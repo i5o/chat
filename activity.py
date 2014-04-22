@@ -221,6 +221,8 @@ class Chat(activity.Activity):
             nick = '???'
         logger.debug('Received message from %s: %s', nick, text)
         self.chatbox.add_text(buddy, text)
+        if hasattr(self, 'notify_user'):
+            self.notify_user(_('Message from %s') % nick, text)
 
     def _alert(self, title, text=None):
         alert = NotifyAlert(timeout=5)
